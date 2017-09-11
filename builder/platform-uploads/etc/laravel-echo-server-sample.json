@@ -1,0 +1,27 @@
+{
+    "authHost": "__APP_URL__",
+    "authEndpoint": "/broadcasting/auth",
+    "clients": [
+        {
+            "appId": "1234567890987654321",
+            "key": "1d902479b1cf176ceba096de9c279aee"
+        }
+    ],
+    "database": "redis",
+    "databaseConfig": {
+        "redis": {
+            "host": "__REDIS_HOST__",
+            "port": "6379"
+        }
+    },
+    "devMode": true,
+    "host": "127.0.0.1",
+    "port": "6001",
+    "protocol": "http",
+    "socketio": {
+        "wsEngine": "uws"
+    },
+    "referrers": [],
+    "verifyAuthPath": true,
+    "verifyAuthServer": false
+}

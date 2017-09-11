@@ -1,0 +1,9 @@
+server {
+    listen              80 default_server;
+    listen              [::]:80 default_server;
+    server_name         _;
+    root                /var/www/html/public;
+    index               index.html index.php;
+
+    include /etc/nginx/sites-conf.d/*.conf;
+}
