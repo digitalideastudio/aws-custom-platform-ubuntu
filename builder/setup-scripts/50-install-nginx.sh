@@ -10,9 +10,6 @@
 
 . $BUILDER_DIR/CONFIG
 
-#groupadd nginx
-#useradd -d /usr/sbin/ -M -s /usr/sbin/nologin nginx -g nginx
-# remove the nginx conf since we need to install nginx first
 rm -rf /etc/nginx/
 
 apt install -y nginx-full
@@ -23,7 +20,5 @@ chmod 644 /etc/nginx/nginx.conf
 chown -R root: /etc/nginx
 
 mkdir -p /var/www/html/public
-echo '<h1>Tecdonor Platform is Ready!</h1>' > /var/www/html/public/index.html
+echo '<?php echo "<h1>Tecdonor Platform is Ready!</h1>";' > /var/www/html/public/index.php
 chown -R www-data: /var/www
-
-#chkconfig nginx on

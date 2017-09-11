@@ -15,7 +15,7 @@ mkdir -p $BEANSTALK_DIR/deploy/appsource/
 mkdir -p /var/app/staging
 mkdir -p /var/app/current
 mkdir -p /var/log/nginx/healthd/
-chown nginx.nginx /var/log/nginx/healthd/
+chown -R www-data: /var/log/nginx
 
 apt install -y git
 

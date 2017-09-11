@@ -41,7 +41,6 @@ setup_beanstalk_base() {
     mkdir -p $BEANSTALK_DIR/deploy/appsource/
     mkdir -p /var/app/staging
     mkdir -p /var/app/current
-    mkdir -p /var/log/nginx/healthd/
     apt-get -y install unzip
 }
 
