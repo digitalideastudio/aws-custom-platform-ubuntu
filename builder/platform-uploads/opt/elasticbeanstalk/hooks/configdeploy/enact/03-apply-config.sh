@@ -32,7 +32,7 @@ if [ ! -z "$REDIS_HOST" ] && [ ! -z "$APP_URL" ]; then
         sed "s|__REDIS_HOST__|$REDIS_HOST|g" | \
         sed "s|__APP_URL__|$APP_URL|g" > /etc/laravel-echo-server.json
 
-    /usr/local/bin/supervisorctl update
+    supervisorctl update
 else
     echo "REDIS_HOST and APP_URL environment variables must be set in order to have Laravel Echo Server working"
 fi
