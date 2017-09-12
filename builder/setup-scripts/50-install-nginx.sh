@@ -18,8 +18,3 @@ rsync -ar $BUILDER_DIR/platform-uploads/etc/nginx/ /etc/nginx/
 chmod 755 /etc/nginx/conf.d
 chmod 644 /etc/nginx/nginx.conf
 chown -R root: /etc/nginx
-
-mkdir -p /var/www/html/public
-echo '<?php echo "<h1>Tecdonor Platform is Ready!</h1>";' > /var/www/html/public/index.php
-echo '<?php echo "<h1>Tecdonor Platform is Ready!</h1>";' > /var/www/html/index.php
-chown -R www-data: /var/www

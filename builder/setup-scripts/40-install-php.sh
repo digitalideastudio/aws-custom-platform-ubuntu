@@ -32,6 +32,8 @@ apt install -y php7.0 \
   php7.0-xml \
   php7.0-xmlrpc \
   php7.0-xsl \
-  php7.0-zip
+  php7.0-zip \
+  php-imagick \
+  composer
 
 rsync -ar $BUILDER_DIR/platform-uploads/etc/php/ /etc/php/

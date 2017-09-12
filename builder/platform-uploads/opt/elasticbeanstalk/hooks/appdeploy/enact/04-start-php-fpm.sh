@@ -16,4 +16,4 @@ echo "Starting php7.0-fpm"
 service php7.0-fpm start
 
 
-echo "[Configuration Deployment] Executed when processing configuration deployment"
+echo "[Application Deployment] Executed when processing application deployment"

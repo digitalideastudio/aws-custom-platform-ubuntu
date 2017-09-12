@@ -14,8 +14,13 @@ echo "Creating base directories for platform."
 mkdir -p $BEANSTALK_DIR/deploy/appsource/
 mkdir -p /var/app/staging
 mkdir -p /var/app/current
+mkdir -p /var/app/current/public
 mkdir -p /var/log/nginx/healthd/
 chown -R www-data: /var/log/nginx
+chown -R www-data: /var/app
+rm -rf /var/www/html
+ln -s /var/app/current /var/www/html
+echo '<h1>Tecdonor Platform is Ready!</h1>' > /var/app/current/public/index.html
 
 apt install -y git
 
