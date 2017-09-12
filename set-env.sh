@@ -41,4 +41,4 @@ MAIL_PASSWORD="Aghe+XJ5mk+rG5yZxcmd9XfP1VjxjQwC8i41LAOHH31+" \
 DB_PASSWORD="knVw9V8bqUyfepQ" \
 TWILIO_ACCOUNT_SID="AC6b68d37155d385f580fdb84414dd4e6e" \
 INTERCOM_SECURE_KEY="WdDvT3Y3vynuMlInsZEJ9dXIsw3O5ZnN7tR_BNtW" \
---profile tecdonot
+--profile tecdonor
