@@ -12,8 +12,9 @@
 . /etc/TecdonorPlatform/platform.config
 
 ## NGINX OPTIONS
-DOCUMENT_ROOT=/var/www/html/`cat $CONFIG_DIR/envvars.json | jq -r .\"aws:elasticbeanstalk:container:php:phpini\".document_root`
-cat /etc/nginx/sites-available/default | sed -E 's|root(\s*)(.*);|root\1'"$DOCUMENT_ROOT"';|' > /etc/nginx/sites-available/default
+DOCUMENT_ROOT=/var/www/html/`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:container:php:phpini".document_root | select (.!=null)'`
+DEFAULT=`cat /etc/nginx/sites-available/default | sed -E 's|root(\s*)(.*);|root\1'"$DOCUMENT_ROOT"';|'`
+echo "$DEFAULT" > /etc/nginx/sites-available/default
 
 ## PHP OPTIONS
 MEMORY_LIMIT=`cat $CONFIG_DIR/envvars.json | jq -r .\"aws:elasticbeanstalk:container:php:phpini\".memory_limit`
