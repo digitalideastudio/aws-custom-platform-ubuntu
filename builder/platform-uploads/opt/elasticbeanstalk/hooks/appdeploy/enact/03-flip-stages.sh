@@ -14,4 +14,7 @@ rm -rf $LIVE_DIR
 mv $STAGING_DIR $LIVE_DIR
 cd $LIVE_DIR
 
-php artisan migrate --force
+# Check if Laravel app is here
+if [ -f artisan.php ]; then
+    php artisan migrate --force
+fi
