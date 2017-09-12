@@ -12,3 +12,21 @@ EB CLI, and APIs/SDKs as "Tecdonor Platform Container".
 For further information on custom platforms, see the
 [Custom Platforms docs](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html).
 
+### Usage
+To create a new environment (usually for testing purposes) using this platform please run the following command:
+```
+eb create -p "arn:aws:elasticbeanstalk:us-east-1:NNNNNN:platform/TecdonorPlatform_Ubuntu/X.Y.Z" tecdonor-new-platform-test -c tecdonor-new-platform-test
+```
+Where `NNNNNN` is your account ID and `X.Y.Z` is the platform version.
+Please note: Don't forget to terminate the environment once you're done with testing:
+
+```
+eb terminate tecdonor-new-platform-test --force
+```
+
+### Development
+To change the platform, please change any relevant files and issue the following command:
+```
+eb platform create
+```
+It will create a new version of the platform and new AMI images which can be used later for Elastic Beanstalk instances.
