@@ -16,7 +16,7 @@ cd $LIVE_DIR
 
 # Check if composer.json is here
 if [ -f composer.json ]; then
-    composer install -n -o
+    HOME=/root COMPOSER_HOME=/root composer install -n -o
     chown www-data: -R ./
     chmod 777 storage/logs
 fi
