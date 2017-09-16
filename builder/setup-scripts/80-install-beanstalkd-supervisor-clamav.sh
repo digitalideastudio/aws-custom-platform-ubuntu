@@ -14,9 +14,7 @@
 apt install -y beanstalkd
 
 ## Supervisor
-rm -rf /etc/supervisor
 apt install -y supervisor
 
 ## ClamAV
-rm -rf /etc/clamav
 apt install -y clamav clamav-daemon clamdscan clamav-freshclam
