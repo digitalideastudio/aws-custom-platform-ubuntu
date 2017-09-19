@@ -22,7 +22,7 @@ rm -rf /var/www/html
 ln -s /var/app/current /var/www/html
 echo '<h1>Tecdonor Platform is Ready!</h1>' > /var/app/current/public/index.html
 
-apt install -y git
+apt install -y git redis-tools
 
 mkdir -p $CONTAINER_CONFIG_FILE_DIR
 echo "CONTAINER_SCRIPTS_DIR=$CONTAINER_SCRIPTS_DIR" >> $CONTAINER_CONFIG

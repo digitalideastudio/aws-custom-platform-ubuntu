@@ -12,7 +12,7 @@
 
 if [ -d /etc/healthd ]
 then
-#	RESTART_HEALTHD=''
+	# RESTART_HEALTHD=''
 	RESTART_HEALTHD='true'
 	## Track application pids
 #	for NAME in `cat $LIVE_DIR/pm2/process.json  | jq '.apps[].name' | sed 's/"//g'`; do

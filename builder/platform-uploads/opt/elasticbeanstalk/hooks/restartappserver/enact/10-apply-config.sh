@@ -29,6 +29,10 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
   REDIS_HOST=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".REDIS_HOST'`
   APP_URL=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".APP_URL'`
 
+  if [ ! -z "$REDIS_HOST" ]; then
+      redis-cli -h $REDIS_HOST --scan | xargs redis-cli -h $REDIS_HOST DEL
+  fi
+
   if [ ! -z "$REDIS_HOST" ] && [ ! -z "$APP_URL" ]; then
       cat /etc/laravel-echo-server-example.json | \
           sed "s|__REDIS_HOST__|$REDIS_HOST|g" | \
@@ -38,4 +42,5 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
   else
       echo "REDIS_HOST and APP_URL environment variables must be set in order to have Laravel Echo Server working"
   fi
+
 fi
