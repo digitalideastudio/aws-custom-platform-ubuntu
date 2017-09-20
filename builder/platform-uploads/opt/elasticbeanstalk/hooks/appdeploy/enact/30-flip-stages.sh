@@ -22,6 +22,6 @@ if [ -f composer.json ]; then
 fi
 
 # Check if Laravel app is here
-if [ -f artisan.php ]; then
+if [ -f artisan ]; then
     php artisan migrate --force
 fi
