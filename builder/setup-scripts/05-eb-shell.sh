@@ -13,10 +13,17 @@ apt -y install zsh zsh-syntax-highlighting
 adduser --debug --home /home/ec2-user --disabled-password --shell /bin/zsh --gecos '' ec2-user
 echo 'ec2-user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/99-ec2-user
 curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -E 's|\s+env zsh||g' > /tmp/install-oh-my-zh.sh
+chmod 777 /tmp/install-oh-my-zh.sh
 su - ec2-user -c 'sh -c /tmp/install-oh-my-zh.sh'
 git clone https://github.com/bhilburn/powerlevel9k.git /home/ec2-user/.oh-my-zsh/custom/themes/powerlevel9k
-sed -i -E 's|ZSH_THEME="robbyrussell"|ZSH_THEME="powerlevel9k/powerlevel9k"|g' /home/ec2-user/.zshrc
-echo 'source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> /home/ec2-user/.zshrc
+
+echo 'export ZSH=/home/ec2-user/.oh-my-zsh
+ZSH_THEME="powerlevel9k/powerlevel9k"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+' > /home/ec2-user/.zshrc
+
 mkdir -p /home/ec2-user/.ssh
 cp /home/ubuntu/.ssh/authorized_keys /home/ec2-user/.ssh
 chown -R ec2-user: /home/ec2-user

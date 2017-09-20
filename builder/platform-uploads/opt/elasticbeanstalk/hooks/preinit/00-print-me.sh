@@ -8,4 +8,4 @@
 
 #!/bin/sh
 
-echo "[Configuration Deployment] Executed when starting configuration deployment"
+echo "[Configuration Deployment] Executed during instance bootstrapping"

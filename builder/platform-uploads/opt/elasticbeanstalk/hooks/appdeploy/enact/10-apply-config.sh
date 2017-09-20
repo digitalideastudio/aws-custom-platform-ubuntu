@@ -26,6 +26,7 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
 
   ### PHP ENV
   cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment"|to_entries|map("env[\(.key)]=\"\(.value|tostring)\"")|.[]|select(.!="env[]=\"null\"")' > /etc/php/7.0/fpm/env.conf
+  cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment"|to_entries|map("\(.key)=\"\(.value|tostring)\"")|.[]|select(.!="=\"null\"")' > $STAGING_DIR/.env
   REDIS_HOST=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".REDIS_HOST'`
   APP_URL=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".APP_URL'`
 
