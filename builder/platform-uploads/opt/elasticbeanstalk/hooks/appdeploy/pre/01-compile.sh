@@ -10,7 +10,7 @@
 
 . /etc/TecdonorPlatform/platform.config
 
-cd $STAGING_DIR
+# cd $LIVE_DIR
 # We don't need node modules to be installed since we should have a precompiled bundle in our app
 # npm install
 
