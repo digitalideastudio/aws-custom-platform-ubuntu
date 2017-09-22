@@ -19,6 +19,7 @@ if [ -f composer.json ]; then
     HOME=/root COMPOSER_HOME=/root composer install -n -o
     chown www-data: -R ./
     chmod 777 storage/logs
+    find public -type d -exec chmod 777 {} \;
 fi
 
 # Check if Laravel app is here
