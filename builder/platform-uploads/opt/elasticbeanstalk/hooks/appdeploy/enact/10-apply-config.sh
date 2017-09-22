@@ -38,7 +38,7 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
           sed "s|__REDIS_HOST__|$REDIS_HOST|g" | \
           sed "s|__APP_URL__|$APP_URL|g" > /etc/laravel-echo-server.json
 
-      supervisorctl update
+      supervisorctl restart all
   else
       echo "REDIS_HOST and APP_URL environment variables must be set in order to have Laravel Echo Server working"
   fi

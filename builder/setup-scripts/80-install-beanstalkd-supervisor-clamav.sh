@@ -15,6 +15,8 @@ apt install -y beanstalkd
 
 ## Supervisor
 apt install -y supervisor
+## Stop it until set up correctly
+supervisorctl stop all
 
 ## ClamAV
 apt install -y clamav clamav-daemon clamdscan clamav-freshclam
