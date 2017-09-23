@@ -24,5 +24,5 @@ fi
 
 # Check if Laravel app is here
 if [ -f artisan ]; then
-    php artisan migrate --force
+    php artisan migrate --force --seed
 fi
