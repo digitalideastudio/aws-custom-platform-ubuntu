@@ -22,6 +22,9 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias tinker="php artisan tinker"
+alias a="php artisan"
+cd /var/www/html
 ' > /home/ec2-user/.zshrc
 
 mkdir -p /home/ec2-user/.ssh
