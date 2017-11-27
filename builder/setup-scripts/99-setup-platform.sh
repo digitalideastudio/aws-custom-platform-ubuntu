@@ -20,7 +20,7 @@ chown -R www-data: /var/log/nginx
 chown -R www-data: /var/app
 rm -rf /var/www/html
 ln -s /var/app/current /var/www/html
-echo '<h1>Tecdonor Platform is Ready!</h1>' > /var/app/current/public/index.html
+echo '<h1>DI Platform is Ready!</h1>' > /var/app/current/public/index.html
 
 apt install -y git redis-tools mysql-client
 

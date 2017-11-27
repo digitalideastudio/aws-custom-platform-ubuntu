@@ -9,11 +9,11 @@
 
 #!/bin/bash -xe
 
-. /etc/TecdonorPlatform/platform.config
+. /etc/DIPlatform/platform.config
 
 cd $LIVE_DIR
-echo "Starting php7.0-fpm"
-service php7.0-fpm start
+echo "Starting php7.1-fpm"
+service php7.1-fpm start
 
 
 echo "[Configuration Deployment] Executed when processing configuration deployment"

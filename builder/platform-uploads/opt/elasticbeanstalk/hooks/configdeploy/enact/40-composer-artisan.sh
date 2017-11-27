@@ -8,7 +8,7 @@
 
 #!/bin/bash -xe
 
-. /etc/TecdonorPlatform/platform.config
+. /etc/DIPlatform/platform.config
 
 cd $LIVE_DIR
 

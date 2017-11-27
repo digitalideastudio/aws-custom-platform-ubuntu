@@ -8,7 +8,7 @@
 
 #!/bin/bash
 
-. /etc/TecdonorPlatform/platform.config
+. /etc/DIPlatform/platform.config
 
 # cd $LIVE_DIR
 # We don't need node modules to be installed since we should have a precompiled bundle in our app

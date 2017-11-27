@@ -33,7 +33,7 @@ SETUP_LOGS_DIR="$BUILDER_DIR/uploads/opt/elasticbeanstalk/tasks"
 ########################
 ### CONTAINER CONFIG ###
 ########################
-CONTAINER_SCRIPTS_DIR="/opt/TecdonorPlatform/bin"
-CONTAINER_CONFIG_FILE_DIR="/etc/TecdonorPlatform"
+CONTAINER_SCRIPTS_DIR="/opt/DIPlatform/bin"
+CONTAINER_CONFIG_FILE_DIR="/etc/DIPlatform"
 CONTAINER_CONFIG_FILE_NAME="platform.config"
 CONTAINER_CONFIG="$CONTAINER_CONFIG_FILE_DIR/$CONTAINER_CONFIG_FILE_NAME"

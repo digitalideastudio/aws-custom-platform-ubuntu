@@ -1,8 +1,8 @@
-TecdonorPlatform_Ubuntu
+DIPlatform_Ubuntu
 Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 Disclaimer
 ----------
 
-This platform is intended to use for Tecdonor project only. It's not expected to be stable for other projects.
+This platform is intended to use for DI project only. It's not expected to be stable for other projects.
 

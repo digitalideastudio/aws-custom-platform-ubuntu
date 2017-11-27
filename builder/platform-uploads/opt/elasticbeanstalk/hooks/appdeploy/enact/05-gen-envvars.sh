@@ -8,7 +8,7 @@
 
 #!/bin/bash
 
-. /etc/TecdonorPlatform/platform.config
+. /etc/DIPlatform/platform.config
 
 mkdir -p $CONFIG_DIR
 rm -f $CONFIG_DIR/envvars.json

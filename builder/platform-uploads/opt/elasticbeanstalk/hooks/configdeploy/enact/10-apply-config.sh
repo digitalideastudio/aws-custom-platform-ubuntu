@@ -9,7 +9,7 @@
 
 #!/bin/bash
 
-. /etc/TecdonorPlatform/platform.config
+. /etc/DIPlatform/platform.config
 
 if [ -f $CONFIG_DIR/envvars.json ]; then
   ## NGINX OPTIONS

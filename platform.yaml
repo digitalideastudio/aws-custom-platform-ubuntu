@@ -10,12 +10,12 @@ version: "1.0"
 
 provisioner:
   type: packer
-  template: tecdonor_platform.json
+  template: di_platform.json
   flavor: ubuntu1604
 
 metadata:
   maintainer: <Serhii Matrunchyk>
-  description: Tecdonor Platform Container.
+  description: DI Platform Container.
   operating_system_name: Ubuntu
   operating_system_version: 16.04
   programming_language_name: ECMAScript
@@ -24,9 +24,3 @@ metadata:
   framework_version: 6.11.3
   app_server_name: "none"
   app_server_version: "none"
-
-#option_definitions:
-#  - namespace: "aws:elasticbeanstalk:container:custom:application"
-#    option_name: "NPM_START"
-#    description: "Default application startup command"
-#    default_value: "node application.js"

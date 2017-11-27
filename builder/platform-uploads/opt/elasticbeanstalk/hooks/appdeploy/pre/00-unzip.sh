@@ -8,7 +8,7 @@
 
 #!/bin/bash
 
-. /etc/TecdonorPlatform/platform.config
+. /etc/DIPlatform/platform.config
 
 if /opt/elasticbeanstalk/bin/download-source-bundle; then
 	rm -rf $STAGING_DIR

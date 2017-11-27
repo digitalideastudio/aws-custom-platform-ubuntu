@@ -8,8 +8,8 @@
         {
             "type": "amazon-ebs",
             "name": "Ubuntu 16.04 LTS - Xenial (HVM)",
-            "region": "us-east-1",
-            "source_ami": "ami-b391b9c8",
+            "region": "us-west-2",
+            "source_ami": "ami-9d04e4e5",
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
             "ssh_pty": "true",

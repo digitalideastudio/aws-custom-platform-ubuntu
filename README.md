@@ -1,13 +1,13 @@
-TecdonorPlatform_Ubuntu
+DIPlatform_Ubuntu
 =======================
 This repository contains the source for an Elastic Beanstalk Custom Platform.
 This custom platform is based on **Ubuntu 16.04** and supports **Node.js 6.11.3**.
 
-See the Packer template, *tecdonor_platform.json*, for details on the AMI and
-scripts that the builder runs as it creates the tecdonor platform.
+See the Packer template, *di_platform.json*, for details on the AMI and
+scripts that the builder runs as it creates the platform.
 
-Once Packer has built the tecdonor platform, it is available in the Console,
-EB CLI, and APIs/SDKs as "Tecdonor Platform Container".
+Once Packer has built the platform, it is available in the Console,
+EB CLI, and APIs/SDKs as "DI Platform Container".
 
 For further information on custom platforms, see the
 [Custom Platforms docs](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html).
@@ -15,13 +15,13 @@ For further information on custom platforms, see the
 ### Usage
 To create a new environment (usually for testing purposes) using this platform please run the following command:
 ```
-eb create -p "arn:aws:elasticbeanstalk:us-east-1:NNNNNN:platform/TecdonorPlatform_Ubuntu/X.Y.Z" tecdonor-new-platform-test -c tecdonor-new-platform-test
+eb create -p "arn:aws:elasticbeanstalk:us-west-2:NNNNNN:platform/DIPlatform_Ubuntu/X.Y.Z" di-new-platform-test -c di-new-platform-test
 ```
 Where `NNNNNN` is your account ID and `X.Y.Z` is the platform version.
 Please note: Don't forget to terminate the environment once you're done with testing:
 
 ```
-eb terminate tecdonor-new-platform-test --force
+eb terminate di-new-platform-test --force
 ```
 
 ### Development

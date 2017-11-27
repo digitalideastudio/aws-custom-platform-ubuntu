@@ -2,7 +2,7 @@
 
 echo "[Configuration Deployment] Executed when starting configuration deployment"
 
-. /etc/TecdonorPlatform/platform.config
+. /etc/DIPlatform/platform.config
 
 cd $LIVE_DIR
 chown www-data: -R ./
