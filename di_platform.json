@@ -8,9 +8,9 @@
         {
             "type": "amazon-ebs",
             "name": "Ubuntu 16.04 LTS - Xenial (HVM)",
-            "region": "us-west-2",
-            "source_ami": "ami-9d04e4e5",
-            "instance_type": "t2.micro",
+            "region": "us-east-1",
+            "source_ami": "ami-dc2d10a6",
+            "instance_type": "t2.small",
             "ssh_username": "ubuntu",
             "ssh_pty": "true",
             "ami_name": "PHP7 running on Ubuntu Server 16.04 LTS (built on {{isotime | clean_ami_name}})",
