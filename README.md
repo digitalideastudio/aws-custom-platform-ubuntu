@@ -15,13 +15,13 @@ For further information on custom platforms, see the
 ### Usage
 To create a new environment (usually for testing purposes) using this platform please run the following command:
 ```
-eb create -p "arn:aws:elasticbeanstalk:us-west-2:NNNNNN:platform/DIPlatform_Ubuntu/X.Y.Z" di-new-platform-test -c di-new-platform-test
+eb create -p "arn:aws:elasticbeanstalk:us-east-1:NNNNNN:platform/DIPlatform_Ubuntu/X.Y.Z" eb-custom-platform-builder-packer -c eb-custom-platform-builder-packer
 ```
 Where `NNNNNN` is your account ID and `X.Y.Z` is the platform version.
 Please note: Don't forget to terminate the environment once you're done with testing:
 
 ```
-eb terminate di-new-platform-test --force
+eb terminate eb-custom-platform-builder-packer --force
 ```
 
 ### Development
