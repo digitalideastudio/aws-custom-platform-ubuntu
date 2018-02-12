@@ -1,7 +1,7 @@
 DIPlatform_Ubuntu
 =======================
 This repository contains the source for an Elastic Beanstalk Custom Platform.
-This custom platform is based on **Ubuntu 16.04** and supports **Node.js 6.11.3**.
+This custom platform is based on **Ubuntu 16.04** and supports **Node.js 8.x.x**.
 
 See the Packer template, *di_platform.json*, for details on the AMI and
 scripts that the builder runs as it creates the platform.

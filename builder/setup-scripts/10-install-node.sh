@@ -13,7 +13,7 @@
 ### INSTALL AND VALIDATE NODE ####
 echo "SETTING UP NODE ON THE INSTANCE"
 
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 apt install -y nodejs
 
 echo "Validate Node.js got installed."
