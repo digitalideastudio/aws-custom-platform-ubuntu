@@ -13,5 +13,5 @@
 ### INSTALL AND VALIDATE NODE ####
 echo "SETTING UP MONITORING TOOLS"
 
-apt install -y munin munin-plugins-extra
+apt install -o Dpkg::Options::="--force-confold" --force-yes -y munin munin-plugins-extra
 
