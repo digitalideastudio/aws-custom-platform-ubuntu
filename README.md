@@ -36,3 +36,5 @@ It will create a new version of the platform and new AMI images which can be use
 * Add a config option for turning off/on ClamAV
 * Enhance extended monitoring
 * Add more useful zsh aliases
+* Add .env.<suffix> support depending on the config option flag
+* Add DB_USERNAME & DB_PASSWORD checks on 30-flip-stages.sh DB server check

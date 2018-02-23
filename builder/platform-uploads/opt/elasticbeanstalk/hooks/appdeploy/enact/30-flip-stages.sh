@@ -24,5 +24,10 @@ fi
 
 # Check if Laravel app is here
 if [ -f artisan ]; then
-    php artisan migrate --force --seed
+    # Check if we have a DB server up & running
+    DB_HOST=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".DB_HOST'`
+
+    if [ ! -z "$DB_HOST" ]; then
+      php artisan migrate --force --seed
+    fi
 fi
