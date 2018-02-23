@@ -18,9 +18,178 @@ metadata:
   description: DI Platform Container.
   operating_system_name: Ubuntu
   operating_system_version: 16.04
-  programming_language_name: ECMAScript
-  programming_language_version: ECMA-262
-  framework_name: NodeJs
-  framework_version: 8.x.x
+  programming_language_name: PHP
+  programming_language_version: 7.1
+  framework_name: Laravel
+  framework_version: 5.x.x
   app_server_name: "none"
   app_server_version: "none"
+
+###############################################################################
+## After you launch your environment, set unique values for these properties
+## using the EB CLI's 'eb setenv' command, or the software settings screen in
+## Configuration menu for your environment in the Elastic Beanstalk management
+## console. Settings using these methods will override the values set in this
+## file, and will not be visible in your source code.
+###############################################################################
+
+option_settings:
+  aws:elasticbeanstalk:application:environment:
+    ALGOLIA_APP_ID: ''
+    ALGOLIA_SEARCH_ONLY: ''
+    ALGOLIA_SECRET: ''
+    APP_DEBUG: 'true'
+    APP_ENV: 'local'
+    APP_KEY: '7jfKCWthyGv3Bde5ZgLrqp8a7yUkyLsP'
+    APP_URL: 'https://example.com'
+    AWS_ACCESS_KEY_ID: ''
+    AWS_BUCKET: ''
+    AWS_REGION: ''
+    AWS_SECRET_ACCESS_KEY: ''
+    BROADCAST_DRIVER: 'redis'
+    APP_URL: ''
+    BUGSNAG_API_KEY: ''
+    CACHE_DRIVER: 'redis'
+    CDN_URL: ''
+    DB_DATABASE: ''
+    DB_HOST: ''
+    DB_PASSWORD: ''
+    DB_USERNAME: ''
+    DOMAIN_NAME: ''
+    ECHO_HOSTNAME: ''
+    ECHO_KEY: ''
+    ECHO_PORT: ''
+    GOOGLE_API_KEY: ''
+    GOOGLE_MAPS_API_KEY: ''
+    INTERCOM_ACCESS_TOKEN: ''
+    INTERCOM_APP_ID: ''
+    INTERCOM_SECURE_KEY: ''
+    MAIL_DRIVER: 'ses'
+    MAIL_PASSWORD: ''
+    MAIL_USERNAME: ''
+    QUEUE_DRIVER: 'redis'
+    REDIS_HOST: ''
+    SES_KEY: ''
+    SES_SECRET: ''
+    STRIPE_API_VERSION: ''
+    STRIPE_CLIENT_ID: ''
+    STRIPE_KEY: ''
+    STRIPE_SECRET: ''
+    TWILIO_ACCOUNT_SID: ''
+    TWILIO_API_KEY: ''
+    TWILIO_API_SECRET: ''
+    TWILIO_AUTH_TOKEN: ''
+
+###############################################################################
+## Enter your public IP address below. this value is used to restrict SSH
+## access to the instances in your environment and, during installation, to
+## restrict port 80 access on the load balancer's security group to let you
+## securely install WordPress.
+###############################################################################
+
+option_settings:
+  aws:elasticbeanstalk:customoption:
+    MyIP: "127.0.0.1/32"
+
+##############################################
+#### Do not modify values below this line ####
+##############################################
+  ## Prevent Beanstalk from adding SSH ingress to instance SG
+  aws:autoscaling:launchconfiguration:
+    SSHSourceRestriction: tcp, 22, 22, 127.0.0.1/32
+  ## Run only one instance during install
+  aws:autoscaling:asg:
+    MaxSize: 1
+  ## Faster deployments during dev work
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: "false"
+  aws:elasticbeanstalk:command:
+    DeploymentPolicy: AllAtOnce
+    IgnoreHealthCheck: "true"
+  aws:elasticbeanstalk:monitoring:
+    Automatically Terminate Unhealthy Instances: "false"
+
+  aws:elasticbeanstalk:sns:topics:
+    Notification Endpoint: me@example.com
+  aws:elasticbeanstalk:application:
+    Application Healthcheck URL: /eb-status
+  aws:elasticbeanstalk:environment:
+    EnvironmentType: LoadBalanced
+    LoadBalancerType: application
+
+  ## Default HTTP process
+  aws:elasticbeanstalk:environment:process:default:
+    HealthCheckPath: /eb-status
+    Protocol: HTTP
+    StickinessEnabled: 'true'
+    StickinessLBCookieDuration: 86400
+
+  ## HTTPS process
+  aws:elasticbeanstalk:environment:process:https:
+    HealthCheckPath: /eb-status
+    Port: '443'
+    Protocol: HTTPS
+    StickinessEnabled: 'true'
+    StickinessLBCookieDuration: 86400
+
+  ## HTTPS Socket process
+  aws:elasticbeanstalk:environment:process:socket:
+    HealthCheckPath: /socket.io
+    Port: '443'
+    Protocol: HTTPS
+    StickinessEnabled: 'true'
+    StickinessLBCookieDuration: 604800
+
+  ## HTTP listener (default)
+  aws:elbv2:listener:default:
+    DefaultProcess: default
+    ListenerEnabled: 'true'
+
+  ## HTTPS listener support
+  aws:elbv2:listener:443:
+    DefaultProcess: https
+    ListenerEnabled: 'true'
+    Protocol: HTTPS
+    SSLCertificateArns: arn:aws:acm:us-east-1:630954786316:certificate/b8703adc-4e57-4001-99aa-9d0d922cc4fc
+    Rules: socket
+
+  ## Socket.io rule
+  aws:elbv2:listenerrule:socket:
+    PathPatterns: /socket.io/*
+    Priority: 1
+    Process: socket
+
+  ## Use the custom security group for the load balancer
+  aws:elb:loadbalancer:
+    SecurityGroups: '`{ "Ref" : "loadbalancersg" }`'
+    ManagedSecurityGroup: '`{ "Ref" : "loadbalancersg" }`'
+
+Resources:
+  ## Extend instance security group with SSH rule
+  sshfromhome:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: {"Fn::GetAtt" : ["AWSEBSecurityGroup", "GroupId"]}
+      IpProtocol: tcp
+      ToPort: 22
+      FromPort: 22
+      CidrIp:
+        Fn::GetOptionSetting: {OptionName: MyIP}
+  ## Custom restricted security group for load balancer
+  loadbalancersg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: load balancer security group
+      VpcId:
+        Fn::GetOptionSetting: {OptionName: VPCId}
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp:
+            Fn::GetOptionSetting: {OptionName: MyIP}
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0

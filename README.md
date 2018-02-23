@@ -12,29 +12,41 @@ EB CLI, and APIs/SDKs as "DI Platform Container".
 For further information on custom platforms, see the
 [Custom Platforms docs](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html).
 
-### Usage
-To create a new environment (usually for testing purposes) using this platform please run the following command:
+### Configure
+
+Everything you place under `builder/platform-uploads/etc` path will appear under `/etc` directory on Ubuntu. So you can override any package you want.
+Additionally, if you want to change an application or config deployment process, feel free to change scripts under `builder/platform-uploads/opt/elasticbeanstalk/hooks` directory for relevant hooks.
+More details about Platform Hooks, please refer to [this article](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platform-hooks.html).
+
+### 1. Build
+
+In order to use the AMI in your region and account you need to build it first.
+You may do it by issuing the following command:
+
 ```
-eb create -p "arn:aws:elasticbeanstalk:us-east-1:NNNNNN:platform/DIPlatform_Ubuntu/X.Y.Z" eb-custom-platform-builder-packer -c eb-custom-platform-builder-packer
+ebp create
 ```
-Where `NNNNNN` is your account ID and `X.Y.Z` is the platform version.
-Please note: Don't forget to terminate the environment once you're done with testing:
+
+It will create a new version of the platform and new AMI image which can be used for your EC2 instances.
+
+### 2. Utilize
+
+To create a new environment using this platform use the following command:
+
+```
+eb create -p "aws_arn_identifier"
+```
+Where `aws_arn_identifier` is an ARN path to your recently built platform and has a similar format to: `arn:aws:elasticbeanstalk:us-east-1:1234567890:platform/DIPlatform_Ubuntu/1.2.3`. Copy this path from the previous step.
+
+#### 3. Clean
+
+In certain circumstances, instances launched by Packer are not cleaned up and have to be manually terminated.
 
 ```
 eb terminate eb-custom-platform-builder-packer --force
 ```
-
-### Development
-To change the platform, please change any relevant files and issue the following command:
-```
-eb platform create
-```
-It will create a new version of the platform and new AMI images which can be used later for Elastic Beanstalk instances.
-
+Alternatively, you can use [manual cleanup](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms-packercleanup.html)
 
 ### TODO
 * Add a config option for turning off/on ClamAV
 * Enhance extended monitoring
-* Add more useful zsh aliases
-* Add .env.<suffix> support depending on the config option flag
-* Add DB_USERNAME & DB_PASSWORD checks on 30-flip-stages.sh DB server check

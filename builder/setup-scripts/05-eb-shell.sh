@@ -12,23 +12,25 @@
 apt -y install zsh zsh-syntax-highlighting
 adduser --debug --home /home/ec2-user --disabled-password --shell /bin/zsh --gecos '' ec2-user
 echo 'ec2-user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/99-ec2-user
-curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -E 's|\s+env zsh||g' > /tmp/install-oh-my-zh.sh
-chmod 777 /tmp/install-oh-my-zh.sh
-su - ec2-user -c 'sh -c /tmp/install-oh-my-zh.sh'
-git clone https://github.com/bhilburn/powerlevel9k.git /home/ec2-user/.oh-my-zsh/custom/themes/powerlevel9k
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/bhilburn/powerlevel9k.git /root/.oh-my-zsh/custom/themes/powerlevel9k
 
-echo 'export ZSH=/home/ec2-user/.oh-my-zsh
+echo 'export ZSH=/root/.oh-my-zsh
 ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias tinker="php artisan tinker"
 alias a="php artisan"
+alias p="ping"
+alias g="grep"
+alias la="ls -lah"
 cd /var/www/html
-' > /home/ec2-user/.zshrc
+' > /root/.zshrc
 
 mkdir -p /home/ec2-user/.ssh
 cp /home/ubuntu/.ssh/authorized_keys /home/ec2-user/.ssh
 chown -R ec2-user: /home/ec2-user
 chmod 700 /home/ec2-user/.ssh
 chmod 600 /home/ec2-user/.ssh/authorized_keys
+echo 'sudo -i' >> /home/ec2-user/.zshrc
