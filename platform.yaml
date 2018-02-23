@@ -25,15 +25,21 @@ metadata:
   app_server_name: "none"
   app_server_version: "none"
 
-###############################################################################
-## After you launch your environment, set unique values for these properties
-## using the EB CLI's 'eb setenv' command, or the software settings screen in
-## Configuration menu for your environment in the Elastic Beanstalk management
-## console. Settings using these methods will override the values set in this
-## file, and will not be visible in your source code.
-###############################################################################
-
 option_settings:
+  ###############################################################################
+  ## After you launch your environment, set unique values for these properties
+  ## using the EB CLI's 'eb setenv' command, or the software settings screen in
+  ## Configuration menu for your environment in the Elastic Beanstalk management
+  ## console. Settings using these methods will override the values set in this
+  ## file, and will not be visible in your source code.
+  ###############################################################################
+
+  ###############################################################################
+  ## Enter your public IP address below. this value is used to restrict SSH
+  ## access to the instances in your environment and, during installation, to
+  ## restrict port 80 access on the load balancer's security group to let you
+  ## securely install WordPress.
+  ###############################################################################
   aws:elasticbeanstalk:application:environment:
     ALGOLIA_APP_ID: ''
     ALGOLIA_SEARCH_ONLY: ''
@@ -80,34 +86,15 @@ option_settings:
     TWILIO_API_SECRET: ''
     TWILIO_AUTH_TOKEN: ''
 
-###############################################################################
-## Enter your public IP address below. this value is used to restrict SSH
-## access to the instances in your environment and, during installation, to
-## restrict port 80 access on the load balancer's security group to let you
-## securely install WordPress.
-###############################################################################
+  ###############################################################################
+  ## Enter your public IP address below. this value is used to restrict SSH
+  ## access to the instances in your environment and, during installation, to
+  ## restrict port 80 access on the load balancer's security group to let you
+  ## securely install WordPress.
+  ###############################################################################
 
-option_settings:
   aws:elasticbeanstalk:customoption:
-    MyIP: "127.0.0.1/32"
-
-##############################################
-#### Do not modify values below this line ####
-##############################################
-  ## Prevent Beanstalk from adding SSH ingress to instance SG
-  aws:autoscaling:launchconfiguration:
-    SSHSourceRestriction: tcp, 22, 22, 127.0.0.1/32
-  ## Run only one instance during install
-  aws:autoscaling:asg:
-    MaxSize: 1
-  ## Faster deployments during dev work
-  aws:autoscaling:updatepolicy:rollingupdate:
-    RollingUpdateEnabled: "false"
-  aws:elasticbeanstalk:command:
-    DeploymentPolicy: AllAtOnce
-    IgnoreHealthCheck: "true"
-  aws:elasticbeanstalk:monitoring:
-    Automatically Terminate Unhealthy Instances: "false"
+    MyIP: '127.0.0.1/32'
 
   aws:elasticbeanstalk:sns:topics:
     Notification Endpoint: me@example.com
@@ -122,7 +109,7 @@ option_settings:
     HealthCheckPath: /eb-status
     Protocol: HTTP
     StickinessEnabled: 'true'
-    StickinessLBCookieDuration: 86400
+    StickinessLBCookieDuration: '86400'
 
   ## HTTPS process
   aws:elasticbeanstalk:environment:process:https:
@@ -130,7 +117,7 @@ option_settings:
     Port: '443'
     Protocol: HTTPS
     StickinessEnabled: 'true'
-    StickinessLBCookieDuration: 86400
+    StickinessLBCookieDuration: '86400'
 
   ## HTTPS Socket process
   aws:elasticbeanstalk:environment:process:socket:
@@ -138,7 +125,7 @@ option_settings:
     Port: '443'
     Protocol: HTTPS
     StickinessEnabled: 'true'
-    StickinessLBCookieDuration: 604800
+    StickinessLBCookieDuration: '604800'
 
   ## HTTP listener (default)
   aws:elbv2:listener:default:
@@ -164,6 +151,25 @@ option_settings:
     SecurityGroups: '`{ "Ref" : "loadbalancersg" }`'
     ManagedSecurityGroup: '`{ "Ref" : "loadbalancersg" }`'
 
+  ## Prevent Beanstalk from adding SSH ingress to instance SG
+  aws:autoscaling:launchconfiguration:
+    SSHSourceRestriction: tcp, 22, 22, 127.0.0.1/32
+
+  ## Run only one instance during install
+  aws:autoscaling:asg:
+    MaxSize: 1
+
+  ## Faster deployments during dev work
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: "false"
+
+  aws:elasticbeanstalk:command:
+    DeploymentPolicy: AllAtOnce
+    IgnoreHealthCheck: "true"
+
+  aws:elasticbeanstalk:monitoring:
+    Automatically Terminate Unhealthy Instances: "false"
+
 Resources:
   ## Extend instance security group with SSH rule
   sshfromhome:
@@ -175,6 +181,7 @@ Resources:
       FromPort: 22
       CidrIp:
         Fn::GetOptionSetting: {OptionName: MyIP}
+
   ## Custom restricted security group for load balancer
   loadbalancersg:
     Type: AWS::EC2::SecurityGroup
