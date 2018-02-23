@@ -30,3 +30,9 @@ To change the platform, please change any relevant files and issue the following
 eb platform create
 ```
 It will create a new version of the platform and new AMI images which can be used later for Elastic Beanstalk instances.
+
+
+### TODO
+* Add a config option for turning off/on ClamAV
+* Enhance extended monitoring
+* Add more useful zsh aliases
