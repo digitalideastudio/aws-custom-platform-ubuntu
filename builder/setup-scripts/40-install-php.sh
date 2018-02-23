@@ -12,6 +12,10 @@
 
 rm -rf /etc/php
 
+apt install -y software-properties-common
+add-apt-repository ppa:ondrej/php -y
+apt-get update -y
+
 apt install -y php7.1 \
   php7.1-bcmath \
   php7.1-bz2 \
@@ -20,6 +24,7 @@ apt install -y php7.1 \
   php7.1-dba \
   php7.1-fpm \
   php7.1-gd \
+  php7.1-gmp \
   php7.1-intl \
   php7.1-json \
   php7.1-mbstring \
@@ -35,5 +40,9 @@ apt install -y php7.1 \
   php7.1-zip \
   php-imagick \
   composer
+
+echo 'cgi.fix_pathinfo=0' >> /etc/php/7.1/cli/php.ini
+systemctl restart php7.1-fpm.service
+systemctl enable php7.1-fpm.service
 
 rsync -ar $BUILDER_DIR/platform-uploads/etc/php/ /etc/php/
