@@ -20,7 +20,7 @@ chown -R www-data: /var/log/nginx
 chown -R www-data: /var/app
 rm -rf /var/www/html
 ln -s /var/app/current /var/www/html
-echo '<h1>DI Platform is Ready!</h1>' > /var/app/current/public/index.html
+echo '<body style="background:#000;margin:0;padding:0;color:#fff;"><h2>Populating data, please wait...</h2></body>' > /var/app/current/public/index.html
 
 apt install -y git redis-tools mysql-client
 

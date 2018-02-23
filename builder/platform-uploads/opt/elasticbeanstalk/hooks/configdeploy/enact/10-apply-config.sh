@@ -28,6 +28,7 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
   cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment"|to_entries|map("\(.key)=\"\(.value|tostring)\"")|.[]|select(.!="=\"null\"")' > $LIVE_DIR/.env
   REDIS_HOST=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".REDIS_HOST'`
   APP_URL=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".APP_URL'`
+  DOMAIN_NAME=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".DOMAIN_NAME'`
 
   if [ ! -z "$REDIS_HOST" ]; then
       redis-cli -h $REDIS_HOST --scan | xargs redis-cli -h $REDIS_HOST DEL
@@ -43,4 +44,7 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
       echo "REDIS_HOST and APP_URL environment variables must be set in order to have Laravel Echo Server working"
   fi
 
+  #### Generate a new Munin config
+  cat /etc/munin.example.conf | sed "s|__DOMAIN_NAME__|$DOMAIN_NAME|g" > /etc/munin/munin.conf
+  service munin-node restart
 fi
