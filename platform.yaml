@@ -228,13 +228,6 @@ option_definitions:
     option_name: "Process"
     default_value: "socket"
 
-  ## Use the custom security group for the load balancer
-  - namespace: "aws:elb:loadbalancer"
-    option_name: "SecurityGroups"
-    default_value: "`{ 'Ref' : 'loadbalancersg' }`"
-    option_name: "ManagedSecurityGroup"
-    default_value: "`{ 'Ref' : 'loadbalancersg' }`"
-
   ## Prevent Beanstalk from adding SSH ingress to instance SG
   - namespace: "aws:autoscaling:launchconfiguration"
     option_name: "SSHSourceRestriction"
