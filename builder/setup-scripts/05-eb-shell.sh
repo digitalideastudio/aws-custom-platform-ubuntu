@@ -14,7 +14,7 @@ adduser --debug --home /home/ec2-user --disabled-password --shell /bin/zsh --gec
 echo 'ec2-user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/99-ec2-user
 curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -E 's|\s+env zsh||g' > /tmp/install-oh-my-zh.sh
 chmod 777 /tmp/install-oh-my-zh.sh
-su - ec2-user -c 'sh -c /tmp/install-oh-my-zh.sh'
+su - root -c 'sh -c /tmp/install-oh-my-zh.sh'
 git clone https://github.com/bhilburn/powerlevel9k.git /root/.oh-my-zsh/custom/themes/powerlevel9k
 
 echo 'export ZSH=/root/.oh-my-zsh
@@ -35,4 +35,3 @@ cp /home/ubuntu/.ssh/authorized_keys /home/ec2-user/.ssh
 chown -R ec2-user: /home/ec2-user
 chmod 700 /home/ec2-user/.ssh
 chmod 600 /home/ec2-user/.ssh/authorized_keys
-echo 'sudo -i' >> /home/ec2-user/.zshrc
