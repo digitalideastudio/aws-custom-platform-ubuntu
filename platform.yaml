@@ -166,15 +166,15 @@ option_definitions:
   ## securely install WordPress.
   ###############################################################################
 
-  - namespace: "aws:elasticbeanstalk:customoption"
-    option_name: "MyIP"
-    ## CHANGE IT
-    default_value: "127.0.0.1/32"
+#  - namespace: "aws:elasticbeanstalk:customoption"
+#    option_name: "MyIP"
+#    ## CHANGE IT
+#    default_value: "127.0.0.1/32"
 
   - namespace: "aws:elasticbeanstalk:sns:topics"
     option_name: "Notification Endpoint"
     ## CHANGE IT
-    default_value: "me@example.com"
+    default_value: "serhii@digitalidea.studio"
 
   - namespace: "aws:elasticbeanstalk:application"
     option_name: "Application Healthcheck URL"
