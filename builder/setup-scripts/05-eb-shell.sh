@@ -15,7 +15,7 @@ echo 'ec2-user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/99-ec2-user
 curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -E 's|\s+env zsh||g' > /tmp/install-oh-my-zh.sh
 chmod 777 /tmp/install-oh-my-zh.sh
 su - ec2-user -c 'sh -c /tmp/install-oh-my-zh.sh'
-git clone https://github.com/bhilburn/powerlevel9k.git /home/root/.oh-my-zsh/custom/themes/powerlevel9k
+git clone https://github.com/bhilburn/powerlevel9k.git /root/.oh-my-zsh/custom/themes/powerlevel9k
 
 echo 'export ZSH=/root/.oh-my-zsh
 ZSH_THEME="powerlevel9k/powerlevel9k"
