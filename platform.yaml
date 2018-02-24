@@ -261,33 +261,3 @@ option_definitions:
     option_name: "Automatically Terminate Unhealthy Instances"
     default_value: "false"
 
-Resouces:
-  ## Extend instance security group with SSH rule
-  myssh:
-    Type: "AWS::EC2::SecurityGroupIngress"
-    Properties:
-      GroupId: {"Fn::GetAtt" : ["AWSEBSecurityGroup", "GroupId"]}
-      IpProtocol: "tcp"
-      ToPort: "22"
-      FromPort: "22"
-      CidrIp:
-        Fn::GetOptionSetting: {OptionName: "MyIP"}
-
-  ## Custom restricted security group for load balancer
-  loadbalancersg:
-    Type: "AWS::EC2::SecurityGroup"
-    Properties:
-      GroupDescription: "load balancer security group"
-      VpcId:
-        Fn::GetOptionSetting: {OptionName: "VPCId"}
-      SecurityGroupIngress:
-        - IpProtocol: "tcp"
-          FromPort: "80"
-          ToPort: "80"
-          CidrIp:
-            Fn::GetOptionSetting: {OptionName: "MyIP"}
-      SecurityGroupEgress:
-        - IpProtocol: "tcp"
-          FromPort: "80"
-          ToPort: "80"
-          CidrIp: "0.0.0.0/0"
