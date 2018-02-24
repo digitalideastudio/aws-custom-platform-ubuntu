@@ -27,149 +27,16 @@ metadata:
 
 option_definitions:
   ###############################################################################
-  ## After you launch your environment, set unique values for these properties
-  ## using the EB CLI's 'eb setenv' command, or the software settings screen in
-  ## Configuration menu for your environment in the Elastic Beanstalk management
-  ## console. Settings using these methods will override the values set in this
-  ## file, and will not be visible in your source code.
-  ###############################################################################
-  - namespace: "aws:elasticbeanstalk:application:environment"
-    option_name: "ALGOLIA_APP_ID"
-    description: "https://www.algolia.com/doc/guides/security/api-keys/"
-    default_value: ""
-
-    option_name: "ALGOLIA_SEARCH_ONLY"
-    description: "https://www.algolia.com/doc/guides/security/api-keys/"
-    default_value: ""
-
-    option_name: "APP_DEBUG"
-    default_value: "true"
-
-    option_name: "APP_ENV"
-    default_value: "local"
-
-    option_name: "APP_KEY"
-    default_value: "7jfKCWthyGv3Bde5ZgLrqp8a7yUkyLsP"
-
-    option_name: "APP_URL"
-    default_value: "https://example.com"
-
-    option_name: "AWS_ACCESS_KEY_ID"
-    default_value: ""
-
-    option_name: "AWS_BUCKET"
-    default_value: ""
-
-    option_name: "AWS_REGION"
-    default_value: ""
-
-    option_name: "AWS_SECRET_ACCESS_KEY"
-    default_value: ""
-
-    option_name: "BROADCAST_DRIVER"
-    default_value: "redis"
-
-    option_name: "BUGSNAG_API_KEY"
-    default_value: ""
-
-    option_name: "CACHE_DRIVER"
-    default_value: "redis"
-
-    option_name: "CDN_URL"
-    default_value: ""
-
-    option_name: "DB_DATABASE"
-    default_value: ""
-
-    option_name: "DB_HOST"
-    default_value: ""
-
-    option_name: "DB_PASSWORD"
-    default_value: ""
-
-    option_name: "DB_USERNAME"
-    default_value: ""
-
-    option_name: "DOMAIN_NAME"
-    default_value: ""
-
-    option_name: "ECHO_HOSTNAME"
-    default_value: ""
-
-    option_name: "ECHO_KEY"
-    default_value: ""
-
-    option_name: "GOOGLE_API_KEY"
-    default_value: ""
-
-    option_name: "GOOGLE_MAPS_API_KEY"
-    default_value: ""
-
-    option_name: "INTERCOM_ACCESS_TOKEN"
-    default_value: ""
-
-    option_name: "INTERCOM_APP_ID"
-    default_value: ""
-
-    option_name: "INTERCOM_SECURE_KEY"
-    default_value: ""
-
-    option_name: "MAIL_DRIVER"
-    default_value: "ses"
-
-    option_name: "MAIL_PASSWORD"
-    default_value: ""
-
-    option_name: "MAIL_USERNAME"
-    default_value: ""
-
-    option_name: "QUEUE_DRIVER"
-    default_value: "redis"
-
-    option_name: "REDIS_HOST"
-    default_value: ""
-
-    option_name: "SES_KEY"
-    default_value: ""
-
-    option_name: "SES_SECRET"
-    default_value: ""
-
-    option_name: "STRIPE_API_VERSION"
-    default_value: ""
-
-    option_name: "STRIPE_CLIENT_ID"
-    default_value: ""
-
-    option_name: "STRIPE_KEY"
-    default_value: ""
-
-    option_name: "STRIPE_SECRET"
-    default_value: ""
-
-    option_name: "TWILIO_ACCOUNT_SID"
-    default_value: ""
-
-    option_name: "TWILIO_API_KEY"
-    default_value: ""
-
-    option_name: "TWILIO_API_SECRET"
-    default_value: ""
-
-    option_name: "TWILIO_AUTH_TOKEN"
-    default_value: ""
-
-  ###############################################################################
   ## Enter your public IP address below. this value is used to restrict SSH
   ## access to the instances in your environment and, during installation, to
   ## restrict port 80 access on the load balancer's security group to let you
   ## securely install WordPress.
   ###############################################################################
 
-#  - namespace: "aws:elasticbeanstalk:customoption"
-#    option_name: "MyIP"
-#    ## CHANGE IT
-#    default_value: "127.0.0.1/32"
+  - namespace: "aws:elasticbeanstalk:customoption"
+    option_name: "MyIP"
+    ## CHANGE IT
+    default_value: "127.0.0.1/32"
 
   - namespace: "aws:elasticbeanstalk:sns:topics"
     option_name: "Notification Endpoint"

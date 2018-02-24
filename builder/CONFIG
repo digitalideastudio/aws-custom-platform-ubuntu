@@ -29,7 +29,6 @@ BEANSTALK_DIR="/opt/elasticbeanstalk"
 SETUP_HOOKS_DIR="$BUILDER_DIR/uploads/opt/elasticbeanstalk/hooks"
 SETUP_LOGS_DIR="$BUILDER_DIR/uploads/opt/elasticbeanstalk/tasks"
 
-
 ########################
 ### CONTAINER CONFIG ###
 ########################
