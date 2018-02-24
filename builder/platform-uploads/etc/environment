@@ -1,6 +1,6 @@
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 APP_ENV="local"
-APP_DEBUG="true"
+APP_DEBUG="false"
 APP_KEY="base64:VdsaLvBvKJeOJSpf3qEgBRnHZ911Zep8QtjkWfb21k1="
 APP_URL="https://example.com"
 AWS_BUCKET=""
