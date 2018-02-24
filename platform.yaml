@@ -25,7 +25,7 @@ metadata:
   app_server_name: "none"
   app_server_version: "none"
 
-option_settings:
+option_definitions:
   ###############################################################################
   ## After you launch your environment, set unique values for these properties
   ## using the EB CLI's 'eb setenv' command, or the software settings screen in
@@ -33,6 +33,131 @@ option_settings:
   ## console. Settings using these methods will override the values set in this
   ## file, and will not be visible in your source code.
   ###############################################################################
+  - namespace: "aws:elasticbeanstalk:application:environment"
+    option_name: "ALGOLIA_APP_ID"
+    description: "https://www.algolia.com/doc/guides/security/api-keys/"
+    default_value: ""
+
+    option_name: "ALGOLIA_SEARCH_ONLY"
+    description: "https://www.algolia.com/doc/guides/security/api-keys/"
+    default_value: ""
+
+    option_name: "APP_DEBUG"
+    default_value: "true"
+
+    option_name: "APP_ENV"
+    default_value: "local"
+
+    option_name: "APP_KEY"
+    default_value: "7jfKCWthyGv3Bde5ZgLrqp8a7yUkyLsP"
+
+    option_name: "APP_URL"
+    default_value: "https://example.com"
+
+    option_name: "AWS_ACCESS_KEY_ID"
+    default_value: ""
+
+    option_name: "AWS_BUCKET"
+    default_value: ""
+
+    option_name: "AWS_REGION"
+    default_value: ""
+
+    option_name: "AWS_SECRET_ACCESS_KEY"
+    default_value: ""
+
+    option_name: "BROADCAST_DRIVER"
+    default_value: "redis"
+
+    option_name: "BUGSNAG_API_KEY"
+    default_value: ""
+
+    option_name: "CACHE_DRIVER"
+    default_value: "redis"
+
+    option_name: "CDN_URL"
+    default_value: ""
+
+    option_name: "DB_DATABASE"
+    default_value: ""
+
+    option_name: "DB_HOST"
+    default_value: ""
+
+    option_name: "DB_PASSWORD"
+    default_value: ""
+
+    option_name: "DB_USERNAME"
+    default_value: ""
+
+    option_name: "DOMAIN_NAME"
+    default_value: ""
+
+    option_name: "ECHO_HOSTNAME"
+    default_value: ""
+
+    option_name: "ECHO_KEY"
+    default_value: ""
+
+    option_name: "GOOGLE_API_KEY"
+    default_value: ""
+
+    option_name: "GOOGLE_MAPS_API_KEY"
+    default_value: ""
+
+    option_name: "INTERCOM_ACCESS_TOKEN"
+    default_value: ""
+
+    option_name: "INTERCOM_APP_ID"
+    default_value: ""
+
+    option_name: "INTERCOM_SECURE_KEY"
+    default_value: ""
+
+    option_name: "MAIL_DRIVER"
+    default_value: "ses"
+
+    option_name: "MAIL_PASSWORD"
+    default_value: ""
+
+    option_name: "MAIL_USERNAME"
+    default_value: ""
+
+    option_name: "QUEUE_DRIVER"
+    default_value: "redis"
+
+    option_name: "REDIS_HOST"
+    default_value: ""
+
+    option_name: "SES_KEY"
+    default_value: ""
+
+    option_name: "SES_SECRET"
+    default_value: ""
+
+    option_name: "STRIPE_API_VERSION"
+    default_value: ""
+
+    option_name: "STRIPE_CLIENT_ID"
+    default_value: ""
+
+    option_name: "STRIPE_KEY"
+    default_value: ""
+
+    option_name: "STRIPE_SECRET"
+    default_value: ""
+
+    option_name: "TWILIO_ACCOUNT_SID"
+    default_value: ""
+
+    option_name: "TWILIO_API_KEY"
+    default_value: ""
+
+    option_name: "TWILIO_API_SECRET"
+    default_value: ""
+
+    option_name: "TWILIO_AUTH_TOKEN"
+    default_value: ""
 
   ###############################################################################
   ## Enter your public IP address below. this value is used to restrict SSH
@@ -40,163 +165,129 @@ option_settings:
   ## restrict port 80 access on the load balancer's security group to let you
   ## securely install WordPress.
   ###############################################################################
-  aws:elasticbeanstalk:application:environment:
-    ALGOLIA_APP_ID: ''
-    ALGOLIA_SEARCH_ONLY: ''
-    ALGOLIA_SECRET: ''
-    APP_DEBUG: 'true'
-    APP_ENV: 'local'
-    APP_KEY: '7jfKCWthyGv3Bde5ZgLrqp8a7yUkyLsP'
-    APP_URL: 'https://example.com'
-    AWS_ACCESS_KEY_ID: ''
-    AWS_BUCKET: ''
-    AWS_REGION: ''
-    AWS_SECRET_ACCESS_KEY: ''
-    BROADCAST_DRIVER: 'redis'
-    APP_URL: ''
-    BUGSNAG_API_KEY: ''
-    CACHE_DRIVER: 'redis'
-    CDN_URL: ''
-    DB_DATABASE: ''
-    DB_HOST: ''
-    DB_PASSWORD: ''
-    DB_USERNAME: ''
-    DOMAIN_NAME: ''
-    ECHO_HOSTNAME: ''
-    ECHO_KEY: ''
-    ECHO_PORT: ''
-    GOOGLE_API_KEY: ''
-    GOOGLE_MAPS_API_KEY: ''
-    INTERCOM_ACCESS_TOKEN: ''
-    INTERCOM_APP_ID: ''
-    INTERCOM_SECURE_KEY: ''
-    MAIL_DRIVER: 'ses'
-    MAIL_PASSWORD: ''
-    MAIL_USERNAME: ''
-    QUEUE_DRIVER: 'redis'
-    REDIS_HOST: ''
-    SES_KEY: ''
-    SES_SECRET: ''
-    STRIPE_API_VERSION: ''
-    STRIPE_CLIENT_ID: ''
-    STRIPE_KEY: ''
-    STRIPE_SECRET: ''
-    TWILIO_ACCOUNT_SID: ''
-    TWILIO_API_KEY: ''
-    TWILIO_API_SECRET: ''
-    TWILIO_AUTH_TOKEN: ''
 
-  ###############################################################################
-  ## Enter your public IP address below. this value is used to restrict SSH
-  ## access to the instances in your environment and, during installation, to
-  ## restrict port 80 access on the load balancer's security group to let you
-  ## securely install WordPress.
-  ###############################################################################
+  - namespace: "aws:elasticbeanstalk:customoption"
+    option_name: "MyIP"
+    ## CHANGE IT
+    default_value: "127.0.0.1/32"
 
-  aws:elasticbeanstalk:customoption:
-    MyIP: '127.0.0.1/32'
+  - namespace: "aws:elasticbeanstalk:sns:topics"
+    option_name: "Notification Endpoint"
+    ## CHANGE IT
+    default_value: "me@example.com"
 
-  aws:elasticbeanstalk:sns:topics:
-    Notification Endpoint: me@example.com
-  aws:elasticbeanstalk:application:
-    Application Healthcheck URL: /eb-status
-  aws:elasticbeanstalk:environment:
-    EnvironmentType: LoadBalanced
-    LoadBalancerType: application
+  - namespace: "aws:elasticbeanstalk:application"
+    option_name: "Application Healthcheck URL"
+    default_value: "/eb-status"
+
+  - namespace: "aws:elasticbeanstalk:environment"
+    option_name: "EnvironmentType"
+    default_value: "LoadBalanced"
+    option_name: "LoadBalancerType"
+    default_value: "application"
 
   ## Default HTTP process
-  aws:elasticbeanstalk:environment:process:default:
-    HealthCheckPath: /eb-status
-    Protocol: HTTP
-    StickinessEnabled: 'true'
-    StickinessLBCookieDuration: '86400'
-
-  ## HTTPS process
-  aws:elasticbeanstalk:environment:process:https:
-    HealthCheckPath: /eb-status
-    Port: '443'
-    Protocol: HTTPS
-    StickinessEnabled: 'true'
-    StickinessLBCookieDuration: '86400'
+  - namespace: "aws:elasticbeanstalk:environment:process:default"
+    option_name: "HealthCheckPath"
+    default_value: "/eb-status"
 
   ## HTTPS Socket process
-  aws:elasticbeanstalk:environment:process:socket:
-    HealthCheckPath: /socket.io
-    Port: '443'
-    Protocol: HTTPS
-    StickinessEnabled: 'true'
-    StickinessLBCookieDuration: '604800'
+  - namespace: "aws:elasticbeanstalk:environment:process:socket"
+    option_name: "HealthCheckPath"
+    default_value: "/socket.io/?transport=polling"
+    option_name: "StickinessEnabled"
+    default_value: "true"
+    option_name: "StickinessLBCookieDuration"
+    default_value: "604800"
 
   ## HTTP listener (default)
-  aws:elbv2:listener:default:
-    DefaultProcess: default
-    ListenerEnabled: 'true'
+  - namespace: "aws:elbv2:listener:default"
+    option_name: "DefaultProcess"
+    default_value: "default"
+    option_name: "ListenerEnabled"
+    default_value: "true"
 
   ## HTTPS listener support
-  aws:elbv2:listener:443:
-    DefaultProcess: https
-    ListenerEnabled: 'true'
-    Protocol: HTTPS
-    SSLCertificateArns: arn:aws:acm:us-east-1:630954786316:certificate/b8703adc-4e57-4001-99aa-9d0d922cc4fc
-    Rules: socket
+  - namespace: "aws:elbv2:listener:443"
+    option_name: "DefaultProcess"
+    default_value: "https"
+    option_name: "Protocol"
+    default_value: "HTTPS"
+    option_name: "Rules"
+    default_value: "Socket"
+    option_name: "SSLCertificateArns"
+    ## CHANGE IT
+    default_value: "arn:aws:acm:us-east-1:630954786316:certificate/b8703adc-4e57-4001-99aa-9d0d922cc4fc"
 
   ## Socket.io rule
-  aws:elbv2:listenerrule:socket:
-    PathPatterns: /socket.io/*
-    Priority: 1
-    Process: socket
+  - namespace: "aws:elbv2:listenerrule:socket"
+    option_name: "PathPatterns"
+    default_value: "/socket.io/*"
+    option_name: "Priority"
+    default_value: "1"
+    option_name: "Process"
+    default_value: "socket"
 
   ## Use the custom security group for the load balancer
-  aws:elb:loadbalancer:
-    SecurityGroups: '`{ "Ref" : "loadbalancersg" }`'
-    ManagedSecurityGroup: '`{ "Ref" : "loadbalancersg" }`'
+  - namespace: "aws:elb:loadbalancer"
+    option_name: "SecurityGroups"
+    default_value: "`{ 'Ref' : 'loadbalancersg' }`"
+    option_name: "ManagedSecurityGroup"
+    default_value: "`{ 'Ref' : 'loadbalancersg' }`"
 
   ## Prevent Beanstalk from adding SSH ingress to instance SG
-  aws:autoscaling:launchconfiguration:
-    SSHSourceRestriction: tcp, 22, 22, 127.0.0.1/32
+  - namespace: "aws:autoscaling:launchconfiguration"
+    option_name: "SSHSourceRestriction"
+    ## CHANGE IT
+    default_value: "tcp, 22, 22, 127.0.0.1/32"
 
   ## Run only one instance during install
-  aws:autoscaling:asg:
-    MaxSize: 1
+  - namespace: "aws:autoscaling:asg"
+    option_name: "MaxSize"
+    default_value: "1"
 
   ## Faster deployments during dev work
-  aws:autoscaling:updatepolicy:rollingupdate:
-    RollingUpdateEnabled: "false"
+  - namespace: "aws:autoscaling:updatepolicy:rollingupdate"
+    option_name: "RollingUpdateEnabled"
+    default_value: "false"
 
-  aws:elasticbeanstalk:command:
-    DeploymentPolicy: AllAtOnce
-    IgnoreHealthCheck: "true"
+  - namespace: "aws:elasticbeanstalk:command"
+    option_name: "DeploymentPolicy"
+    default_value: "AllAtOnce"
+    option_name: "IgnoreHealthCheck"
+    default_value: "true"
 
-  aws:elasticbeanstalk:monitoring:
-    Automatically Terminate Unhealthy Instances: "false"
+  - namespace: "aws:elasticbeanstalk:monitoring"
+    option_name: "Automatically Terminate Unhealthy Instances"
+    default_value: "false"
 
-Resources:
+Resouces:
   ## Extend instance security group with SSH rule
-  sshfromhome:
-    Type: AWS::EC2::SecurityGroupIngress
+  myssh:
+    Type: "AWS::EC2::SecurityGroupIngress"
     Properties:
       GroupId: {"Fn::GetAtt" : ["AWSEBSecurityGroup", "GroupId"]}
-      IpProtocol: tcp
-      ToPort: 22
-      FromPort: 22
+      IpProtocol: "tcp"
+      ToPort: "22"
+      FromPort: "22"
       CidrIp:
-        Fn::GetOptionSetting: {OptionName: MyIP}
+        Fn::GetOptionSetting: {OptionName: "MyIP"}
 
   ## Custom restricted security group for load balancer
   loadbalancersg:
-    Type: AWS::EC2::SecurityGroup
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
-      GroupDescription: load balancer security group
+      GroupDescription: "load balancer security group"
       VpcId:
-        Fn::GetOptionSetting: {OptionName: VPCId}
+        Fn::GetOptionSetting: {OptionName: "VPCId"}
       SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
+        - IpProtocol: "tcp"
+          FromPort: "80"
+          ToPort: "80"
           CidrIp:
-            Fn::GetOptionSetting: {OptionName: MyIP}
+            Fn::GetOptionSetting: {OptionName: "MyIP"}
       SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 0.0.0.0/0
+        - IpProtocol: "tcp"
+          FromPort: "80"
+          ToPort: "80"
+          CidrIp: "0.0.0.0/0"
