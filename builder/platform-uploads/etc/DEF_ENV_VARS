@@ -1,3 +1,7 @@
+APP_ENV="local"
+APP_DEBUG="true"
+APP_KEY="base64:VdsaLvBvKJeOJSpf3qEgBRnHZ911Zep8QtjkWfb21k1="
+APP_URL="https://example.com"
 AWS_BUCKET=""
 AWS_REGION=""
 AWS_SECRET_ACCESS_KEY=""

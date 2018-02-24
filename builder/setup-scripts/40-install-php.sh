@@ -42,7 +42,7 @@ apt install -y php7.1 \
   composer
 
 echo 'cgi.fix_pathinfo=0' >> /etc/php/7.1/cli/php.ini
-systemctl restart php7.1-fpm.service
-systemctl enable php7.1-fpm.service
+# systemctl restart php7.1-fpm.service
+# systemctl enable php7.1-fpm.service
 
 rsync -ar $BUILDER_DIR/platform-uploads/etc/php/ /etc/php/

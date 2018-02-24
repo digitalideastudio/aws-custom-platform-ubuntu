@@ -19,5 +19,5 @@ chmod 755 /etc/nginx/conf.d
 chmod 644 /etc/nginx/nginx.conf
 chown -R root: /etc/nginx
 
-systemctl restart nginx.service
-systemctl enable nginx.service
+# systemctl restart nginx.service
+# systemctl enable nginx.service

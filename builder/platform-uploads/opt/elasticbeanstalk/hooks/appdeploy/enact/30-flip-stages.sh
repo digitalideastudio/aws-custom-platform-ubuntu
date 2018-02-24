@@ -25,12 +25,12 @@ fi
 # Check if Laravel app is here
 if [ -f artisan ]; then
     # Check whether DB variables are populated
-    DB_HOST=`cat $CONFIG_DIR/envvars.json | jq -e -r '."aws:elasticbeanstalk:application:environment".DB_HOST'` || exit $?
-    DB_USERNAME=`cat $CONFIG_DIR/envvars.json | jq -e -r '."aws:elasticbeanstalk:application:environment".DB_USERNAME'` || exit $?
-    DB_PASSWORD=`cat $CONFIG_DIR/envvars.json | jq -e -r '."aws:elasticbeanstalk:application:environment".DB_PASSWORD'` || exit $?
+    DB_HOST=`cat $CONFIG_DIR/envvars.json | jq -e -r '."aws:elasticbeanstalk:application:environment".DB_HOST'` || exit 0
+    DB_USERNAME=`cat $CONFIG_DIR/envvars.json | jq -e -r '."aws:elasticbeanstalk:application:environment".DB_USERNAME'` || exit 0
+    DB_PASSWORD=`cat $CONFIG_DIR/envvars.json | jq -e -r '."aws:elasticbeanstalk:application:environment".DB_PASSWORD'` || exit 0
 
     # Check whether DB server is reachable
-    mysql --connect-timeout=2 -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD -e 'SHOW VARIABLES LIKE "%version%";' || exit $?
+    mysql --connect-timeout=2 -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD -e 'SHOW VARIABLES LIKE "%version%";' || exit 0
 
     # Run migrations
     php artisan migrate --force --seed
