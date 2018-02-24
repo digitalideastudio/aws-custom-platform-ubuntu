@@ -26,18 +26,6 @@ metadata:
   app_server_version: "none"
 
 option_definitions:
-  ###############################################################################
-  ## Enter your public IP address below. this value is used to restrict SSH
-  ## access to the instances in your environment and, during installation, to
-  ## restrict port 80 access on the load balancer's security group to let you
-  ## securely install WordPress.
-  ###############################################################################
-
-  - namespace: "aws:elasticbeanstalk:customoption"
-    option_name: "MyIP"
-    ## CHANGE IT
-    default_value: "127.0.0.1/32"
-
   - namespace: "aws:elasticbeanstalk:sns:topics"
     option_name: "Notification Endpoint"
     ## CHANGE IT
