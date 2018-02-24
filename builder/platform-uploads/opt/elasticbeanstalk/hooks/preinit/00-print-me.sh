@@ -9,3 +9,4 @@
 #!/bin/sh
 
 echo "[Configuration Deployment] Executed during instance bootstrapping"
+sudo sh -c 'cat /home/ubuntu/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys'

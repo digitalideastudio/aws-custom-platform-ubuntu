@@ -16,6 +16,7 @@ curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools
 chmod 777 /tmp/install-oh-my-zh.sh
 su - root -c 'sh -c /tmp/install-oh-my-zh.sh'
 git clone https://github.com/bhilburn/powerlevel9k.git /root/.oh-my-zsh/custom/themes/powerlevel9k
+echo 'sudo -i' >> /home/ec2-user/.zshrc
 
 echo 'export ZSH=/root/.oh-my-zsh
 ZSH_THEME="powerlevel9k/powerlevel9k"
