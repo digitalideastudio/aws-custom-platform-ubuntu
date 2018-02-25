@@ -25,6 +25,9 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias tinker="php artisan tinker"
 alias a="php artisan"
+alias up="php artisan up"
+alias down="php artisan down"
+alias reconfig="php artisan config:cache"
 alias p="ping"
 alias g="grep"
 alias la="ls -lah"

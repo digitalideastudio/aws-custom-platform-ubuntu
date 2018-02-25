@@ -24,6 +24,7 @@ ln -s /var/app/current /var/www/html
 cat << EOF > /var/app/current/public/index.html
 <html>
   <head>
+    <meta http-equiv="refresh" content="10">
     <style>
       body {
         background: #29394a;
