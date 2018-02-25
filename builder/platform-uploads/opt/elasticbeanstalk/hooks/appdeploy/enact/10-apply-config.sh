@@ -25,7 +25,13 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
   ZLIB_OUTPUT_COMPRESSION=`cat $CONFIG_DIR/envvars.json | jq -r .\"aws:elasticbeanstalk:container:php:phpini\".zlib_output_compression`
 
   ### PHP ENV
-  cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment"|to_entries|map("\(.key)=\"\(.value|tostring)\"")|.[]|select(.!="=\"null\"")' > $STAGING_DIR/.env
+  cp /etc/DIPlatform/.env.default > $LIVE_DIR/.env
+  while read -r line; do
+      option_name=`echo $line | cut -d"=" -f1`
+      line_number=`egrep -n "^${option_name}=" /etc/DIPlatform/.env.default | cut -d':' -f1`
+      sed -i "${line_number}s|.*|${line}|" $LIVE_DIR/.env
+  done <<<`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment"|to_entries|map("\(.key)=\"\(.value|tostring)\"")|.[]|select(.!="=\"null\"")'`
+
   REDIS_HOST=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".REDIS_HOST'`
   APP_URL=`cat $CONFIG_DIR/envvars.json | jq -r '."aws:elasticbeanstalk:application:environment".APP_URL'`
 
