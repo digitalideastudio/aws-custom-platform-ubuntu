@@ -25,7 +25,7 @@ if [ -f $CONFIG_DIR/envvars.json ]; then
   ZLIB_OUTPUT_COMPRESSION=`cat $CONFIG_DIR/envvars.json | jq -r .\"aws:elasticbeanstalk:container:php:phpini\".zlib_output_compression`
 
   ### PHP ENV
-  cp /etc/DIPlatform/.env.default > $LIVE_DIR/.env
+  cp /etc/DIPlatform/.env.default $LIVE_DIR/.env
   while read -r line; do
       option_name=`echo $line | cut -d"=" -f1`
       line_number=`egrep -n "^${option_name}=" /etc/DIPlatform/.env.default | cut -d':' -f1`
