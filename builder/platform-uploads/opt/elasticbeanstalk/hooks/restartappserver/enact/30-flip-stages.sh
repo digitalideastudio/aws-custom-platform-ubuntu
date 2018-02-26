@@ -36,4 +36,5 @@ if [ -f artisan ]; then
     # Run migrations
     php artisan migrate --force --seed
     php artisan up
+    chown www-data: -R ./
 fi
